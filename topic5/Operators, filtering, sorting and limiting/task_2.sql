@@ -24,8 +24,8 @@ INSERT INTO users (`name`, created_at, updated_at) VALUES
 
 -- Для начала сменим формат даты
 UPDATE users SET
-created_at = STR_TO_DATE(created_at, '%d.%m.%Y %H:%mm'),
-updated_at = STR_TO_DATE(updated_at, '%d.%m.%Y %H:%mm')
+created_at = STR_TO_DATE(created_at, '%d.%m.%Y %H:%i'),
+updated_at = STR_TO_DATE(updated_at, '%d.%m.%Y %H:%i')
 WHERE id > 0;
 
 -- запрос по задаче

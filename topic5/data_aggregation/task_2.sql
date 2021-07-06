@@ -11,7 +11,7 @@ CREATE TABLE users
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    birhday DATETIME NOT NULL
+    birthday DATETIME NOT NULL
 );
 
 -- Заполним таблицу данными
@@ -28,7 +28,7 @@ BEGIN
 	    SET random_month = (RAND() * (12 - 1)) + 1;
         SET random_day = (RAND() * (28 - 1)) + 1;
         SET `date` = CONCAT(random_year,'-', random_month, '-', random_day, ' 00:00:00');
-       INSERT INTO users (`name`, birhday) 
+       INSERT INTO users (`name`, birthday) 
        VALUES (CONCAT("user_", i), `date`); 
 	SET i = i + 1; 
     END WHILE;
@@ -38,6 +38,6 @@ DELIMITER ;
 CALL prepare_data;
 
 -- Запрос по задаче
-SELECT COUNT(DAYOFWEEK(CONCAT(SUBSTRING(NOW(), 1, 4), SUBSTRING(birhday, 5)))) as days_count, 
-       DAYNAME(CONCAT(SUBSTRING(NOW(), 1, 4), SUBSTRING(birhday, 5))) as day_name
+SELECT COUNT(DAYOFWEEK(CONCAT(YEAR(NOW()), SUBSTRING(birthday, 5)))) as days_count, 
+       DAYNAME(CONCAT(YEAR(NOW()), SUBSTRING(birthday, 5))) as day_name
 FROM users GROUP BY day_name;

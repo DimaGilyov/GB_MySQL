@@ -10,7 +10,7 @@ CREATE TABLE users
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    birhday DATETIME NOT NULL
+    birthday DATETIME NOT NULL
 );
 
 -- Заполним таблицу данными
@@ -25,7 +25,7 @@ BEGIN
         SET random_year = (RAND() * (2000 - 1968)) + 1968;
 	    SET random_month = (RAND() * (12 - 1)) + 1;
         SET `date` = CONCAT(random_year,'-', random_month, '-01 00:00:00');
-       INSERT INTO users (`name`, birhday) 
+       INSERT INTO users (`name`, birthday) 
        VALUES (CONCAT("user_", i), `date`); 
 	SET i = i + 1; 
     END WHILE;
@@ -35,6 +35,6 @@ DELIMITER ;
 CALL prepare_data;
 
 -- Запрос по задаче
-SELECT AVG(DATE_FORMAT(NOW(), "%Y") - DATE_FORMAT(birhday, "%Y")) AS  average_age
+SELECT AVG(DATE_FORMAT(NOW(), "%Y") - DATE_FORMAT(birthday, "%Y")) AS  average_age
 FROM users;
     

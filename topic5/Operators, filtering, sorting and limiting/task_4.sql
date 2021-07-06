@@ -10,7 +10,7 @@ CREATE TABLE users
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
-    birhday DATETIME NOT NULL
+    birthday DATETIME NOT NULL
 );
 
 -- Заполним таблицу данными
@@ -23,7 +23,7 @@ BEGIN
     WHILE i <= 100 DO 
 	    SET random_month = (RAND() * (12 - 1)) + 1;
         SET `date` = CONCAT('2021-', random_month, '-06 03:21:52');
-       INSERT INTO users (`name`, birhday) 
+       INSERT INTO users (`name`, birthday) 
        VALUES (CONCAT("user_", i), `date`); 
 	SET i = i + 1; 
     END WHILE;
@@ -34,9 +34,6 @@ CALL prepare_data;
 
 -- Запрос по задаче
 SELECT `name`,
-    CASE 
-        WHEN DATE_FORMAT(birhday, '%m') = 08 THEN 'august'
-		WHEN DATE_FORMAT(birhday, '%m') = 05 THEN 'may'
-    END AS `month`
+   MONTHNAME(birthday) AS `month`
 FROM users
-WHERE DATE_FORMAT(birhday, '%m') = 08 OR DATE_FORMAT(birhday, '%m') = 05;
+WHERE DATE_FORMAT(birthday, '%m') = 08 OR DATE_FORMAT(birthday, '%m') = 05;
