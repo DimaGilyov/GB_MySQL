@@ -35,6 +35,6 @@ DELIMITER ;
 CALL prepare_data;
 
 -- Запрос по задаче
-SELECT AVG(DATE_FORMAT(NOW(), "%Y") - DATE_FORMAT(birthday, "%Y")) AS  average_age
+SELECT AVG(TIMESTAMPDIFF(YEAR, NOW(), birthday)) AS  average_age
 FROM users;
     
