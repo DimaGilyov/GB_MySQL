@@ -4,6 +4,6 @@
 
 SELECT u.name 
 FROM orders AS o
-LEFT JOIN users AS u
+JOIN users AS u
 ON u.id = o.user_id
 GROUP BY u.name;
