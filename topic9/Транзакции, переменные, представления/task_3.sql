@@ -5,7 +5,6 @@
 */
 
 -- Для начала создадим DB и таблицу и наполним таблицу данными из условия
-DROP DATABASE topic_9;
 CREATE DATABASE topic_9;
 USE topic_9;
 CREATE TABLE dates
