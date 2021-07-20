@@ -6,18 +6,18 @@
 DELIMITER $$
 DROP FUNCTION IF EXISTS hello$$
 CREATE FUNCTION hello ()
-RETURNS TEXT DETERMINISTIC
+RETURNS TEXT DETERMINISTIC NO SQL 
 BEGIN
-   DECLARE currentHour INT;
-   SET currentHour = HOUR(NOW());
+   DECLARE currentTime TIME;
+   SET currentTime = CURRENT_TIME();
    CASE
-       WHEN currentHour BETWEEN 0 AND 5 THEN 
+       WHEN currentTime BETWEEN "00:00" AND "05:00" THEN 
           RETURN 'Доброй ночи';
-	   WHEN currentHour BETWEEN 6 AND 11 THEN 
+	   WHEN currentTime BETWEEN "06:00" AND "11:00" THEN 
           RETURN 'Доброе утро';
-       WHEN currentHour BETWEEN 12 AND 17 THEN 
+       WHEN currentTime BETWEEN "12:00" AND "17:00" THEN 
           RETURN 'Добрый день';
-       WHEN currentHour BETWEEN 18 AND 23 THEN 
+       WHEN currentTime BETWEEN "18:00" AND "23:00" THEN 
           RETURN 'Добрый вечер';
     END CASE;
 END$$
