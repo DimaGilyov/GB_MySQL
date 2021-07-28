@@ -1,0 +1,10 @@
+2) При помощи базы данных Redis решите задачу поиска имени пользователя по электронному адресу и наоборот, поиск электронного адреса пользователя по его имени.
+
+> set DimaGilev dimagilev91@gmail.com
+OK
+> set dimagilev91@gmail.com DimaGilev
+OK
+> get DimaGilev
+"dimagilev91@gmail.com"
+> get dimagilev91@gmail.com
+"DimaGilev"
